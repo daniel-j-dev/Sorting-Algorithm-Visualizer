@@ -1,7 +1,6 @@
 import "./AlgoVisual.css"
 
-function AlgoVisual({ props }) {
-  const { values, settings } = props
+function AlgoVisual({ values, settings }) {
   return (
     <div id="AlgoVisual">
       {values.map((item, index) => (

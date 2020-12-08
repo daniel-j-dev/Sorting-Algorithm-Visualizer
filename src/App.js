@@ -5,38 +5,40 @@ import Controls from "./components/Controls/Controls.js"
 import "./App.css"
 
 function App() {
-  const [appState, setAppState] = useState({
-    settings: {
-      arraySize: 75,
-      maxValue: 500,
-      hideCode: false,
-    },
-    values: [],
+  const [settings, setSettings] = useState({
+    arraySize: 75,
+    maxValue: 500,
+    hideCode: false,
+    AnimationSpeed: 1000,
   })
+
+  const [values, setValues] = useState([])
 
   useEffect(() => {
     let tempValues = []
-    for (let i = 0; i < appState.settings.arraySize; i++) {
+    for (let i = 0; i < settings.arraySize; i++) {
       tempValues.push(randomInt())
     }
-    setAppState({
-      ...appState,
-      values: [...tempValues]
-    })
+    setValues([...tempValues])
   }, [])
 
   const randomInt = () => {
-    return Math.floor(Math.random() * appState.settings.maxValue)
+    return Math.floor(Math.random() * settings.maxValue)
   }
 
   return (
     <div className="App">
       <div id="upper">
         <CodeBlock />
-        <AlgoVisual props={appState} />
+        <AlgoVisual values={values} settings={settings} />
       </div>
       <div id="lower">
-        <Controls />
+        <Controls
+          values={values}
+          setValues={setValues}
+          settings={settings}
+          setSettings={setSettings}
+        />
         {/* Add a "Hire me" button? */}
       </div>
     </div>
