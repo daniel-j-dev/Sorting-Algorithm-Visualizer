@@ -7,7 +7,7 @@ import "./App.css"
 function App() {
   const [appState, setAppState] = useState({
     settings: {
-      arraySize: 500,
+      arraySize: 75,
       maxValue: 500,
       hideCode: false,
     },

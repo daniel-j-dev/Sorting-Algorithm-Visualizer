@@ -5,7 +5,7 @@ function AlgoVisual({ props }) {
   return (
     <div id="AlgoVisual">
       {values.map((item, index) => (
-        <div className='value' key={index}>i</div>
+        <div className="value" key={index}></div>
       ))}
     </div>
   )
