@@ -10,7 +10,7 @@ import bubbleSort from "./algorithms/bubbleSort"
 function App() {
   const [settings, setSettings] = useState({
     arraySize: 150,
-    maxValue: 100,
+    maxValue: 1000,
     hideCode: false,
     AnimationSpeed: 5,
     selectedAlgo: bubbleSort,

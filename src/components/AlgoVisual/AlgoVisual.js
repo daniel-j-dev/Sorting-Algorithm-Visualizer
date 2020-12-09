@@ -8,7 +8,13 @@ function AlgoVisual() {
   return (
     <div id="AlgoVisual">
       {values.map((val, index) => (
-        <div className="value" key={index} style={{ height: `${val}%` }}></div>
+        <div
+          className="value"
+          key={index}
+          id={index}
+          style={{ height: `${(val / settings.maxValue) * 100}%` }} 
+          //Determining what a bar's height is by what % it is of the maximum value^
+        ></div>
       ))}
     </div>
   )
