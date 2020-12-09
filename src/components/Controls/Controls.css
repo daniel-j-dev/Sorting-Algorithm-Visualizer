@@ -2,4 +2,32 @@
   height: 100%;
   border: 1px solid black;
   border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* input[name="speed"],
+input[name="size"] {
+  transform: rotate(-90deg);
+} */
+
+#speed-container,
+#size-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#speed-container > input,
+#size-container > input {
+  transform: rotate(-90deg);
+}
+
+#speed-container > label,
+#size-container > label {
+  white-space: nowrap;
+  transform: rotate(-90deg);
 }

@@ -25,22 +25,22 @@ const bubbleSortAnimations = (ani, { values, setValues, settings }) => {
     setTimeout(() => {
       //Clear out old comparison colors
       document.getElementById(`${comparedItems[0]}`).style.backgroundColor =
-        "#ffc600"
+        "#90ee90"
       document.getElementById(`${comparedItems[1]}`).style.backgroundColor =
-        "#ffc600"
+        "#90ee90"
 
       //Change colors for current comparison items
       comparedItems = [idx1, idx2]
-      document.getElementById(`${idx1}`).style.backgroundColor = "#90ee90"
-      document.getElementById(`${idx2}`).style.backgroundColor = "#90ee90"
+      document.getElementById(`${idx1}`).style.backgroundColor = "#ffc600"
+      document.getElementById(`${idx2}`).style.backgroundColor = "#ffc600"
       ;[tempArr[idx1], tempArr[idx2]] = [tempArr[idx2], tempArr[idx1]]
       setValues([...tempArr])
       //If on last item of loop, change the last two comparison item's colors back to normal
       if (i === ani.length - 1) {
         document.getElementById(`${comparedItems[0]}`).style.backgroundColor =
-          "#ffc600"
+          "#90ee90"
         document.getElementById(`${comparedItems[1]}`).style.backgroundColor =
-          "#ffc600"
+          "#90ee90"
       }
     }, i * settings.AnimationSpeed)
   }

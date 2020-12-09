@@ -37,25 +37,33 @@ function Controls() {
   const randomizeArray = () => {
     setSettings({
       ...settings,
-      randomizeArray: settings.randomizeArray + 1
+      randomizeArray: settings.randomizeArray + 1,
     })
   }
 
   return (
     <div id="Controls">
       <button onClick={() => randomizeArray()}>Randomize</button>
-      <input
-        type="range"
-        min="1"
-        max="100"
-        onChange={(event) => adjustSpeed(event)}
-      />
-      <input
-        type="range"
-        min="1"
-        max="100"
-        onChange={(event) => adjustArraySize(event)}
-      />
+      <div id="speed-container">
+        <label for="speed">Algo Speed</label>
+        <input
+          type="range"
+          min="1"
+          max="100"
+          onChange={(event) => adjustSpeed(event)}
+          name="speed"
+        />
+      </div>
+      <div id="size-container">
+        <label for="size">Array Size</label>
+        <input
+          type="range"
+          min="1"
+          max="100"
+          onChange={(event) => adjustArraySize(event)}
+          name="size"
+        />
+      </div>
       <button
         disabled={settings.sorted}
         onClick={() => sort(settings.selectedAlgo)}
