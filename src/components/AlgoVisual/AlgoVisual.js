@@ -1,10 +1,14 @@
+import { useContext } from "react"
+import appContext from "../../contexts/appContext"
 import "./AlgoVisual.css"
 
-function AlgoVisual({ values, settings }) {
+function AlgoVisual() {
+  const { values, setValues, settings, setSettings } = useContext(appContext)
+
   return (
     <div id="AlgoVisual">
-      {values.map((item, index) => (
-        <div className="value" key={index}></div>
+      {values.map((val, index) => (
+        <div className="value" key={index} style={{ height: `${val}%` }}></div>
       ))}
     </div>
   )

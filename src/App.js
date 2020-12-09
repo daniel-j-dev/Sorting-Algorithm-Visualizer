@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react"
-import AlgoVisual from "./components/AlgoVisual/AlgoVisual.js"
-import CodeBlock from "./components/CodeBlock/CodeBlock.js"
-import Controls from "./components/Controls/Controls.js"
+import appContext from "./contexts/appContext"
+import AlgoVisual from "./components/AlgoVisual/AlgoVisual"
+import CodeBlock from "./components/CodeBlock/CodeBlock"
+import Controls from "./components/Controls/Controls"
 import "./App.css"
+
+import bubbleSort from "./algorithms/bubbleSort"
 
 function App() {
   const [settings, setSettings] = useState({
-    arraySize: 75,
-    maxValue: 500,
+    arraySize: 150,
+    maxValue: 100,
     hideCode: false,
-    AnimationSpeed: 1000,
+    AnimationSpeed: 5,
+    selectedAlgo: bubbleSort,
+    sorted: false,
   })
 
   const [values, setValues] = useState([])
@@ -28,19 +33,16 @@ function App() {
 
   return (
     <div className="App">
-      <div id="upper">
-        <CodeBlock />
-        <AlgoVisual values={values} settings={settings} />
-      </div>
-      <div id="lower">
-        <Controls
-          values={values}
-          setValues={setValues}
-          settings={settings}
-          setSettings={setSettings}
-        />
-        {/* Add a "Hire me" button? */}
-      </div>
+      <appContext.Provider value={{ values, setValues, settings, setSettings }}>
+        <div id="upper">
+          <CodeBlock />
+          <AlgoVisual />
+        </div>
+        <div id="lower">
+          <Controls />
+          {/* Add a "Hire me" button? */}
+        </div>
+      </appContext.Provider>
     </div>
   )
 }
