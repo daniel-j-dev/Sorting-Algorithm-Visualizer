@@ -24,20 +24,20 @@ function App() {
   }
 
   const [settings, setSettings] = useState({
-    arraySize: 150,
+    arraySize: 100,
     maxValue: 1000,
     hideCode: false,
-    AnimationSpeed: 5, //Measured in MS delay per action
+    AnimationSpeed: 7, //Measured in MS delay per action
     selectedAlgo: bubbleSort,
     sorted: false,
-    randomizeArray: randomizeArray,
+    randomizeArray: 0, //Passing the function itself was causing problems so I set this variable as a dependancy to useEffect - just changing this value will force the array to randomize
   })
 
   const [values, setValues] = useState([])
 
   useEffect(() => {
     randomizeArray()
-  }, [])
+  }, [settings.randomizeArray, settings.arraySize])
 
   return (
     <div className="App">

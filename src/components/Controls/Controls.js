@@ -15,25 +15,46 @@ function Controls() {
   }
 
   const adjustSpeed = (event) => {
-    let newSpeed = 20 - (event.target.value / 100) * 20
-    //(20) - ((Slider value as a %) * (20))
+    let newSpeed = 15 - (event.target.value / 100) * 15
+    //(15) - ((Slider value as a %) * (15))
     //Slider at 100% = an animation delay of 0 millisecond
-    //Slider at 0% = an animation delay of 20 millisecond
+    //Slider at 0% = an animation delay of 15 millisecond
 
     setSettings({
       ...settings,
-      AnimationSpeed: Math.round(newSpeed)
+      AnimationSpeed: Math.round(newSpeed),
+    })
+  }
+
+  const adjustArraySize = (event) => {
+    const newSize = event.target.value * 2 //Up to 200 items
+    setSettings({
+      ...settings,
+      arraySize: newSize,
+    })
+  }
+
+  const randomizeArray = () => {
+    setSettings({
+      ...settings,
+      randomizeArray: settings.randomizeArray + 1
     })
   }
 
   return (
     <div id="Controls">
-      <button onClick={() => settings.randomizeArray()}>Randomize</button>
+      <button onClick={() => randomizeArray()}>Randomize</button>
       <input
         type="range"
         min="1"
         max="100"
         onChange={(event) => adjustSpeed(event)}
+      />
+      <input
+        type="range"
+        min="1"
+        max="100"
+        onChange={(event) => adjustArraySize(event)}
       />
       <button
         disabled={settings.sorted}
