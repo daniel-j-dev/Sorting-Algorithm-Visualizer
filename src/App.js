@@ -8,28 +8,36 @@ import "./App.css"
 import bubbleSort from "./algorithms/bubbleSort"
 
 function App() {
-  const [settings, setSettings] = useState({
-    arraySize: 150,
-    maxValue: 1000,
-    hideCode: false,
-    AnimationSpeed: 5,
-    selectedAlgo: bubbleSort,
-    sorted: false,
-  })
-
-  const [values, setValues] = useState([])
-
-  useEffect(() => {
+  const randomizeArray = () => {
+    const randomInt = () => {
+      return Math.floor(Math.random() * settings.maxValue)
+    }
     let tempValues = []
     for (let i = 0; i < settings.arraySize; i++) {
       tempValues.push(randomInt())
     }
     setValues([...tempValues])
-  }, [])
-
-  const randomInt = () => {
-    return Math.floor(Math.random() * settings.maxValue)
+    setSettings({
+      ...settings,
+      sorted: false,
+    })
   }
+
+  const [settings, setSettings] = useState({
+    arraySize: 150,
+    maxValue: 1000,
+    hideCode: false,
+    AnimationSpeed: 5, //Measured in MS delay per action
+    selectedAlgo: bubbleSort,
+    sorted: false,
+    randomizeArray: randomizeArray,
+  })
+
+  const [values, setValues] = useState([])
+
+  useEffect(() => {
+    randomizeArray()
+  }, [])
 
   return (
     <div className="App">
