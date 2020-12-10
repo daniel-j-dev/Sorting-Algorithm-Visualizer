@@ -1,5 +1,40 @@
-#CodeBlock {
-    width: 30%;
-    border: 1px solid black;
+#code-container {
+  width: 30%;
+  border: 1px solid black;
   border-radius: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+}
+
+#code-label {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f4662;
+  margin-bottom: 10px;
+}
+
+#code-container > code {
+  display: block;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+  font-family: "Fira Code";
+  font-size: 13px;
+}
+
+#code-container > code::-webkit-scrollbar {
+  width: 5px;
+}
+
+#code-container > code::-webkit-scrollbar-track {
+
+}
+
+#code-container > code::-webkit-scrollbar-thumb {
+  background-color: #E7EAEF;
+  border-radius: 20px;
+}
