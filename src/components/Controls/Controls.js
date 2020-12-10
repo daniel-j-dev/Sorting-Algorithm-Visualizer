@@ -2,6 +2,9 @@ import { useContext } from "react"
 import appContext from "../../contexts/appContext"
 import "./Controls.css"
 
+import bubbleSort from "../../algorithms/bubbleSort"
+import selectionSort from "../../algorithms/selectionSort"
+
 function Controls() {
   const { values, setValues, settings, setSettings } = useContext(appContext)
 
@@ -41,6 +44,13 @@ function Controls() {
     })
   }
 
+  const changeAlgo = (algoFunc) => {
+    setSettings({
+      ...settings,
+      selectedAlgo: algoFunc,
+    })
+  }
+
   return (
     <div id="controls">
       <span id="controls-tab">Control Panel</span>
@@ -54,7 +64,7 @@ function Controls() {
               onChange={(event) => adjustSpeed(event)}
               name="speed"
             />
-            <label for="speed">Algo Speed</label>
+            <label htmlFor="speed">Algo Speed</label>
           </div>
           <div id="size-container">
             <input
@@ -64,7 +74,7 @@ function Controls() {
               onChange={(event) => adjustArraySize(event)}
               name="size"
             />
-            <label for="size">Array Size</label>
+            <label htmlFor="size">Array Size</label>
           </div>
         </div>
         <div id="algos-container">
@@ -77,15 +87,17 @@ function Controls() {
           </button>
           <button
             className={`algo ${
-              settings.selectedAlgo.name === "insertionSort" ? "selected" : ""
+              settings.selectedAlgo.name === "selectionSort" ? "selected" : ""
             }`}
+            onClick={() => changeAlgo(selectionSort)}
           >
-            Insertion Sort
+            Selection Sort
           </button>
           <button
             className={`algo ${
               settings.selectedAlgo.name === "bubbleSort" ? "selected" : ""
             }`}
+            onClick={() => changeAlgo(bubbleSort)}
           >
             Bubble Sort
           </button>
