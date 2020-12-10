@@ -42,7 +42,7 @@ function Controls() {
   }
 
   return (
-    <div id="Controls">
+    <div id="controls">
       <button onClick={() => randomizeArray()}>Randomize</button>
       <div id="speed-container">
         <label for="speed">Algo Speed</label>

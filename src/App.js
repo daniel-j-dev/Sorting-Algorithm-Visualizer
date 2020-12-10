@@ -43,10 +43,10 @@ function App() {
     <div className="App">
       <appContext.Provider value={{ values, setValues, settings, setSettings }}>
         <div id="upper">
-          <CodeBlock />
           <AlgoVisual />
         </div>
         <div id="lower">
+          <CodeBlock />
           <Controls />
           {/* Add a "Hire me" button? */}
         </div>
