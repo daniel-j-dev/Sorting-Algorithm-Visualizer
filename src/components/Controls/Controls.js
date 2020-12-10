@@ -43,60 +43,65 @@ function Controls() {
 
   return (
     <div id="controls">
-      <div id="speed-container">
-        <label for="speed">Algo Speed</label>
-        <input
-          type="range"
-          min="1"
-          max="100"
-          onChange={(event) => adjustSpeed(event)}
-          name="speed"
-        />
-      </div>
-      <div id="size-container">
-        <label for="size">Array Size</label>
-        <input
-          type="range"
-          min="1"
-          max="100"
-          onChange={(event) => adjustArraySize(event)}
-          name="size"
-        />
-      </div>
-      <div id="algos-container">
-        <button
-          className={`algo ${
-            settings.selectedAlgo.name === "mergeSort" ? "selected" : ""
-          }`}
-        >
-          Merge Sort
-        </button>
-        <button
-          className={`algo ${
-            settings.selectedAlgo.name === "insertionSort" ? "selected" : ""
-          }`}
-        >
-          Insertion Sort
-        </button>
-        <button
-          className={`algo ${
-            settings.selectedAlgo.name === "bubbleSort" ? "selected" : ""
-          }`}
-        >
-          Bubble Sort
-        </button>
-      </div>
-      <div id='sort-rand-container'>
-        <button
-          id="sort"
-          disabled={settings.sorted}
-          onClick={() => sort(settings.selectedAlgo)}
-        >
-          Sort
-        </button>
-        <button id="randomize" onClick={() => randomizeArray()}>
-          Randomize
-        </button>
+      <span id="controls-tab">Control Panel</span>
+      <div id="controls-interface">
+        <div id="sliders-container">
+          <div id="speed-container">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              onChange={(event) => adjustSpeed(event)}
+              name="speed"
+            />
+            <label for="speed">Algo Speed</label>
+          </div>
+          <div id="size-container">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              onChange={(event) => adjustArraySize(event)}
+              name="size"
+            />
+            <label for="size">Array Size</label>
+          </div>
+        </div>
+        <div id="algos-container">
+          <button
+            className={`algo ${
+              settings.selectedAlgo.name === "mergeSort" ? "selected" : ""
+            }`}
+          >
+            Merge Sort
+          </button>
+          <button
+            className={`algo ${
+              settings.selectedAlgo.name === "insertionSort" ? "selected" : ""
+            }`}
+          >
+            Insertion Sort
+          </button>
+          <button
+            className={`algo ${
+              settings.selectedAlgo.name === "bubbleSort" ? "selected" : ""
+            }`}
+          >
+            Bubble Sort
+          </button>
+        </div>
+        <div id="sort-rand-container">
+          <button
+            id="sort"
+            disabled={settings.sorted}
+            onClick={() => sort(settings.selectedAlgo)}
+          >
+            Sort
+          </button>
+          <button id="randomize" onClick={() => randomizeArray()}>
+            Randomize
+          </button>
+        </div>
       </div>
     </div>
   )

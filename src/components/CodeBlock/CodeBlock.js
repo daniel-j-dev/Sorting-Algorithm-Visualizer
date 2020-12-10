@@ -22,7 +22,7 @@ function CodeBlock() {
 
   return (
     <div id="code-container">
-      <div id="code-label">
+      <div id="code-tab">
         <span>Source Code</span>
       </div>
       <code>{algo.name === "bubbleSort" ? bubbleSort : ""}</code>
