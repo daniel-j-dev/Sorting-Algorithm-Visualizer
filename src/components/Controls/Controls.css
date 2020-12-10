@@ -71,37 +71,34 @@
 }
 
 .algo {
-  border: 3px outset #1679c0;
-  border-radius: 20px;
-  text-align: center;
-  width: 175px;
-  background-color: #1f4662;
   outline: none;
-  color: #e7eaef;
+  width: 175px;
+  border: none;
+  background-color: #122738;
   font-weight: bold;
   font-family: "Fira Code";
-  font-size: 13px;
+  color: white;
+  border-left: 1px solid #1679c0;
+  border-bottom: 1px solid #1679c0;
 }
 
 .algo:hover,
 #randomize:hover {
-  box-shadow: 0px 0px 10px #90ee90;
-  border: 3px outset #90ee90;
   background-color: #90ee90;
+  box-shadow: 0px 0px 10px #90ee90;
   color: black;
 }
 
-.algo:active, #randomize:active {
-  box-shadow: 0px 0px 10px #3c633c;
-  border: 3px outset #3c633c;
+.algo:active,
+#randomize:active {
   background-color: #3c633c;
+  box-shadow: 0px 0px 10px #3c633c;
   color: black;
 }
 
 .selected {
-  box-shadow: 0px 0px 10px #90ee90;
-  border: 3px outset #90ee90;
   background-color: #90ee90;
+  box-shadow: 0px 0px 10px #90ee90;
   color: black;
 }
 
@@ -114,29 +111,26 @@
 
 #randomize,
 #sort {
-  border: 3px outset #1679c0;
-  border-radius: 20px;
-  text-align: center;
-  width: 100px;
-  background-color: #1f4662;
   outline: none;
-  color: #e7eaef;
+  width: 100px;
+  border: none;
+  background-color: #122738;
   font-weight: bold;
   font-family: "Fira Code";
-  font-size: 13px;
+  color: white;
+  border-left: 1px solid #1679c0;
+  border-bottom: 1px solid #1679c0;
 }
 
 #sort:hover {
-  box-shadow: 0px 0px 10px yellow;
-  border: 3px outset #ffc600;
-  background-color: #c29800;
+  background-color: #ffc600;
+  box-shadow: 0px 0px 10px #ffc600;
   color: black;
 }
 
 #sort:active {
-  box-shadow: 0px 0px 10px rgb(109, 109, 2);
-  border: 3px outset rgb(109, 109, 2);
   background-color: rgb(109, 109, 2);
+  box-shadow: 0px 0px 10px rgb(109, 109, 2);
   color: black;
 }
 
