@@ -43,7 +43,6 @@ function Controls() {
 
   return (
     <div id="controls">
-      <button onClick={() => randomizeArray()}>Randomize</button>
       <div id="speed-container">
         <label for="speed">Algo Speed</label>
         <input
@@ -64,12 +63,41 @@ function Controls() {
           name="size"
         />
       </div>
-      <button
-        disabled={settings.sorted}
-        onClick={() => sort(settings.selectedAlgo)}
-      >
-        Sort
-      </button>
+      <div id="algos-container">
+        <button
+          className={`algo ${
+            settings.selectedAlgo.name === "mergeSort" ? "selected" : ""
+          }`}
+        >
+          Merge Sort
+        </button>
+        <button
+          className={`algo ${
+            settings.selectedAlgo.name === "insertionSort" ? "selected" : ""
+          }`}
+        >
+          Insertion Sort
+        </button>
+        <button
+          className={`algo ${
+            settings.selectedAlgo.name === "bubbleSort" ? "selected" : ""
+          }`}
+        >
+          Bubble Sort
+        </button>
+      </div>
+      <div id='sort-rand-container'>
+        <button
+          id="sort"
+          disabled={settings.sorted}
+          onClick={() => sort(settings.selectedAlgo)}
+        >
+          Sort
+        </button>
+        <button id="randomize" onClick={() => randomizeArray()}>
+          Randomize
+        </button>
+      </div>
     </div>
   )
 }

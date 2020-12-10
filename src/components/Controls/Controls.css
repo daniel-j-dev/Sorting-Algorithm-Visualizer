@@ -34,6 +34,69 @@ input[name="size"] {
   transform: rotate(-90deg);
 }
 
+#algos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 129px;
+}
+
+.algo {
+  border: 3px outset #1679c0;
+  border-radius: 20px;
+  text-align: center;
+  width: 175px;
+  background-color: #1f4662;
+  outline: none;
+  color: #e7eaef;
+  font-weight: bold;
+  font-family: "Fira Code";
+  font-size: 13px;
+}
+
+.algo:hover, #randomize:hover {
+  box-shadow: 0px 0px 10px #90ee90;
+  border: 3px outset #90ee90; /*#ffc600;*/
+  background-color: #90ee90; /*#c29800;*/
+  color: black;
+}
+
+.selected {
+  box-shadow: 0px 0px 10px #90ee90;
+  border: 3px outset #90ee90; /*#ffc600;*/
+  background-color: #90ee90; /*#c29800;*/
+  color: black;
+}
+
+#sort-rand-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 129px;
+}
+
+#randomize, #sort {
+  border: 3px outset #1679c0;
+  border-radius: 20px;
+  text-align: center;
+  width: 100px;
+  background-color: #1f4662;
+  outline: none;
+  color: #e7eaef;
+  font-weight: bold;
+  font-family: "Fira Code";
+  font-size: 13px;
+}
+
+#sort:hover {
+  box-shadow: 0px 0px 10px yellow;
+  border: 3px outset #ffc600;
+  background-color: #c29800;
+  color: black;
+}
+
 @media only screen and (max-width: 799px) {
   #controls {
     width: 100%;
