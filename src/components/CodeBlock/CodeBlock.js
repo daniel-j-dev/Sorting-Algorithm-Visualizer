@@ -31,7 +31,42 @@ function CodeBlock() {
     return array
   }`
 
-  const mergeSort = ``
+  const mergeSort = `const mergeSort = array => {
+    if (array.length === 1) return array
+  
+    let array1 = array.slice(0, Math.floor(array.length / 2))
+    let array2 = array.slice(array1.length)
+  
+    array1 = mergeSort(array1)
+    array2 = mergeSort(array2)
+  
+    return merge(array1, array2)
+  }
+  
+  const merge = (array1, array2) => {
+    let tmpArr = []
+    while (array1.length > 0 && array2.length > 0) {
+      if (array1[0] > array2[0]) {
+        tmpArr.push(array2[0])
+        array2.shift()
+      } else {
+        tmpArr.push(array1[0])
+        array1.shift()
+      }
+      console.log(tmpArr)
+    }
+  
+    while (array1.length > 0) {
+      tmpArr.push(array1[0])
+      array1.shift()
+    }
+  
+    while (array2.length > 0) {
+      tmpArr.push(array2[0])
+      array2.shift()
+    }
+    return tmpArr
+  }`
 
   return (
     <div id="code-container">

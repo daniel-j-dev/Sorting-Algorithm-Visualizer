@@ -4,6 +4,7 @@ import "./Controls.css"
 
 import bubbleSort from "../../algorithms/bubbleSort"
 import selectionSort from "../../algorithms/selectionSort"
+import mergeSort from "../../algorithms/mergeSort"
 
 function Controls() {
   const { values, setValues, settings, setSettings } = useContext(appContext)
@@ -82,6 +83,7 @@ function Controls() {
             className={`algo ${
               settings.selectedAlgo.name === "mergeSort" ? "selected" : ""
             }`}
+            onClick={() => changeAlgo(mergeSort)}
           >
             Merge Sort
           </button>
