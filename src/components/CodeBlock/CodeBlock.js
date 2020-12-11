@@ -20,12 +20,27 @@ function CodeBlock() {
     return array
   }`
 
+  const selectionSort = `const selectionSort = array => {
+    for (let i = 0; i < array.length - 1; i++) {
+      let min = i
+      for (let j = i + 1; j < array.length; j++) {
+        if (array[j] < array[min]) min = j
+      }
+      ;[array[i], array[min]] = [array[min], array[i]]
+    }
+    return array
+  }`
+
+  const mergeSort = ``
+
   return (
     <div id="code-container">
       <div id="code-tab">
         <span>Source Code</span>
       </div>
-      <code>{algo.name === "bubbleSort" ? bubbleSort : ""}</code>
+      {(algo.name === "bubbleSort" ? <code>{bubbleSort}</code> : "")}
+      {(algo.name === "selectionSort" ? <code>{selectionSort}</code> : "")}
+      {(algo.name === "mergeSort" ? <code>{mergeSort}</code> : "")}
     </div>
   )
 }
