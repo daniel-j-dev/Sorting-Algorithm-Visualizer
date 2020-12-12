@@ -132,6 +132,12 @@
   color: black;
 }
 
+.stop, .stop:hover {
+  background-color: #f64747 !important;
+  box-shadow: 0px 0px 10px #f64747 !important;
+  color: black;
+}
+
 @media only screen and (max-width: 799px) {
   #controls {
     width: 100%;

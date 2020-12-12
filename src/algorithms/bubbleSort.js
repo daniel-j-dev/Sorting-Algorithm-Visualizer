@@ -16,13 +16,13 @@ const bubbleSort = (array, appContext) => {
   return array
 }
 
-const bubbleSortAnimations = (ani, { values, setValues, settings }) => {
+const bubbleSortAnimations = (ani, { values, setValues, settings, setSettings }) => {
   let comparedItems = [0, 1]
   let tempArr = [...values]
   for (let i = 0; i < ani.length; i++) {
     let idx1 = ani[i]
     let idx2 = idx1 + 1
-    setTimeout(() => {
+    settings.aniSteps[settings.aniSteps.length] = setTimeout(() => {
       //Clear out old comparison colors
       document.getElementById(`${comparedItems[0]}`).style.backgroundColor =
         "#90ee90"
@@ -41,6 +41,12 @@ const bubbleSortAnimations = (ani, { values, setValues, settings }) => {
           "#90ee90"
         document.getElementById(`${comparedItems[1]}`).style.backgroundColor =
           "#90ee90"
+        //...and set sorting to false because we're done
+        setSettings({
+          ...settings,
+          sorting: false,
+          sorted: true,
+        })
       }
     }, i * settings.AnimationSpeed)
   }

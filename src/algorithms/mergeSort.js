@@ -64,12 +64,14 @@ const conquer = (array, startX, middleX, endX, tmpArr, ani) => {
   }
 }
 
-const animate = (ani, { values, setValues, settings }) => {
+const animate = (ani, { values, setValues, settings, setSettings }) => {
   let lastItems = [0, 1]
   let tmpArr = [...values]
   for (let i = 0; i < ani.length; i++) {
     let item = ani[i]
-    setTimeout(() => {
+
+    settings.aniSteps[settings.aniSteps.length] = setTimeout(() => {
+
       //Clear out old comparison colors
       document.getElementById(`${lastItems[0]}`).style.backgroundColor =
         "#90ee90"
@@ -89,8 +91,15 @@ const animate = (ani, { values, setValues, settings }) => {
           "#90ee90"
         document.getElementById(`${lastItems[1]}`).style.backgroundColor =
           "#90ee90"
+        //...and set sorting to false because we're done
+        setSettings({
+          ...settings,
+          sorting: false,
+          sorted: true,
+        })
       }
     }, i * settings.AnimationSpeed)
+
   }
 }
 

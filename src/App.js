@@ -29,8 +29,12 @@ function App() {
     hideCode: false,
     AnimationSpeed: 7, //Measured in MS delay per action
     selectedAlgo: bubbleSort,
+    sorting: false,
     sorted: false,
-    randomizeArray: 0, //Passing the function itself was causing problems so I set this variable as a dependancy to useEffect - just changing this value will force the array to randomize
+    randomizeArray: 0,
+    //Passing the randomizeArray function itself was causing problems so I set this variable as a dependancy to useEffect
+    //Just changing this value will force the array to randomize
+    aniSteps: [], //The array is used to clear instances of setTimeout to "stop" animations
   })
 
   const [values, setValues] = useState([])

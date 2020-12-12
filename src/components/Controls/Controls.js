@@ -10,12 +10,26 @@ function Controls() {
   const { values, setValues, settings, setSettings } = useContext(appContext)
 
   const sort = (algo) => {
-    let newValues = [...values]
-    algo(newValues, { values, setValues, settings })
-    setSettings({
-      ...settings,
-      sorted: true,
-    })
+    if (settings.sorting) {
+      //If already sorting, stop!
+      //Clear out all animation setTimeout() instances
+      for (let i = 0; i < settings.aniSteps.length; i++) {
+        clearTimeout(settings.aniSteps[i])
+      }
+      //...and change state so that styles update
+      setSettings({
+        ...settings,
+        sorting: false,
+      })
+    } else {
+      //Else, we'll sort!
+      let newValues = [...values]
+      setSettings({
+        ...settings,
+        sorting: true,
+      })
+      algo(newValues, { values, setValues, settings, setSettings })
+    }
   }
 
   const adjustSpeed = (event) => {
@@ -64,6 +78,7 @@ function Controls() {
               max="100"
               onChange={(event) => adjustSpeed(event)}
               name="speed"
+              disabled={settings.sorting}
             />
             <label htmlFor="speed">Algo Speed</label>
           </div>
@@ -74,6 +89,7 @@ function Controls() {
               max="100"
               onChange={(event) => adjustArraySize(event)}
               name="size"
+              disabled={settings.sorting}
             />
             <label htmlFor="size">Array Size</label>
           </div>
@@ -84,6 +100,7 @@ function Controls() {
               settings.selectedAlgo.name === "mergeSort" ? "selected" : ""
             }`}
             onClick={() => changeAlgo(mergeSort)}
+            disabled={settings.sorting}
           >
             Merge Sort
           </button>
@@ -92,6 +109,7 @@ function Controls() {
               settings.selectedAlgo.name === "selectionSort" ? "selected" : ""
             }`}
             onClick={() => changeAlgo(selectionSort)}
+            disabled={settings.sorting}
           >
             Selection Sort
           </button>
@@ -100,6 +118,7 @@ function Controls() {
               settings.selectedAlgo.name === "bubbleSort" ? "selected" : ""
             }`}
             onClick={() => changeAlgo(bubbleSort)}
+            disabled={settings.sorting}
           >
             Bubble Sort
           </button>
@@ -109,10 +128,15 @@ function Controls() {
             id="sort"
             disabled={settings.sorted}
             onClick={() => sort(settings.selectedAlgo)}
+            className={settings.sorting ? "stop" : ""}
           >
-            Sort
+            {settings.sorting ? "Stop" : "Sort"}
           </button>
-          <button id="randomize" onClick={() => randomizeArray()}>
+          <button
+            id="randomize"
+            onClick={() => randomizeArray()}
+            disabled={settings.sorting}
+          >
             Randomize
           </button>
         </div>

@@ -14,14 +14,14 @@ const selectionSort = (array, appContext) => {
   return array
 }
 
-const selectionSortAnimation = (ani, { values, setValues, settings }) => {
+const selectionSortAnimation = (ani, { values, setValues, settings, setSettings }) => {
   let lastItems = [0, 1]
   let tempArr = [...values]
   for (let i = 0; i < ani.length; i++) {
     let idx1 = ani[i][0],
       idx2 = ani[i][1]
 
-    setTimeout(() => {
+      settings.aniSteps[settings.aniSteps.length] = setTimeout(() => {
       //Clear out old colors
       document.getElementById(`${lastItems[0]}`).style.backgroundColor =
         "#90ee90"
@@ -47,6 +47,12 @@ const selectionSortAnimation = (ani, { values, setValues, settings }) => {
           "#90ee90"
         document.getElementById(`${lastItems[1]}`).style.backgroundColor =
           "#90ee90"
+        //...and set sorting to false because we're done
+        setSettings({
+          ...settings,
+          sorting: false,
+          sorted: true,
+        })
       }
     }, i * settings.AnimationSpeed)
   }
