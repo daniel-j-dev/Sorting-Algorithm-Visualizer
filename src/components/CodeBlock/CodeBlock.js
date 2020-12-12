@@ -32,50 +32,48 @@ function CodeBlock() {
   }`
 
   const mergeSort = `const mergeSort = array => {
-    if (array.length === 1) return array
-  
-    let array1 = array.slice(0, Math.floor(array.length / 2))
-    let array2 = array.slice(array1.length)
-  
-    array1 = mergeSort(array1)
-    array2 = mergeSort(array2)
-  
-    return merge(array1, array2)
+    if (array.length <= 1) return array
+    let tmpArr = [...array]
+    divide(array, 0, array.length - 1, tmpArr)
+    return array
   }
   
-  const merge = (array1, array2) => {
-    let tmpArr = []
-    while (array1.length > 0 && array2.length > 0) {
-      if (array1[0] > array2[0]) {
-        tmpArr.push(array2[0])
-        array2.shift()
+  const divide = (array, startX, endX, tmpArr) => {
+    if (startX === endX) return
+    const middleX = Math.floor((startX + endX) / 2)
+    divide(tmpArr, startX, middleX, array)
+    divide(tmpArr, middleX + 1, endX, array)
+    conquer(array, startX, middleX, endX, tmpArr)
+  }
+  
+  const conquer = (array, startX, middleX, endX, tmpArr) => {
+    let k = startX
+    let i = startX
+    let j = middleX + 1
+    while (i <= middleX && j <= endX) {
+      if (tmpArr[i] <= tmpArr[j]) {
+        array[k++] = tmpArr[i++]
       } else {
-        tmpArr.push(array1[0])
-        array1.shift()
+        array[k++] = tmpArr[j++]
       }
-      console.log(tmpArr)
     }
-  
-    while (array1.length > 0) {
-      tmpArr.push(array1[0])
-      array1.shift()
+    while (i <= middleX) {
+      array[k++] = tmpArr[i++]
     }
-  
-    while (array2.length > 0) {
-      tmpArr.push(array2[0])
-      array2.shift()
+    while (j <= endX) {
+      array[k++] = tmpArr[j++]
     }
-    return tmpArr
-  }`
+  }
+  `
 
   return (
     <div id="code-container">
       <div id="code-tab">
         <span>Source Code</span>
       </div>
-      {(algo.name === "bubbleSort" ? <code>{bubbleSort}</code> : "")}
-      {(algo.name === "selectionSort" ? <code>{selectionSort}</code> : "")}
-      {(algo.name === "mergeSort" ? <code>{mergeSort}</code> : "")}
+      {algo.name === "bubbleSort" ? <code>{bubbleSort}</code> : ""}
+      {algo.name === "selectionSort" ? <code>{selectionSort}</code> : ""}
+      {algo.name === "mergeSort" ? <code>{mergeSort}</code> : ""}
     </div>
   )
 }

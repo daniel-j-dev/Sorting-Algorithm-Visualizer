@@ -1,94 +1,97 @@
+// In-place merge sort
+
+//We need to retain the index of items for the sake of animating the chart
+// Method to retain the index when doing Merge Sort:
+
+// 1. Make one temp array copy and break it down into individual pieces through recursion with pointers instead of new arrays
+// 2. Merge the individual pieces into the original array
+
 const mergeSort = (array, appContext) => {
-  //This function is a wrapper to help with logging animation steps
-  let ani = []
-  let newArr = []
-  for (let i = 0; i < array.length; i++) {
-    //Adds the array item along with it's original index - by doing so it keeps track of the index throughout the merging process
-    newArr.push({
-      value: array[i],
-      index: i,
-    })
-  }
-  let result = mergeSortReal(newArr, ani)
-  let finalArr = []
-  for (let i = 0; i < result.length; i++) {
-    //This loop gets rid of the index tracking to return the result in the end
-    finalArr.push(result[i].value)
-  }
-  mergeSortAnimation(ani, appContext)
-  return finalArr
+  //An enclosing function that helps with both Merge Sort and handlding animations.
+  //appContext is just for animate()
+  if (array.length <= 1) return array
+  let ani = [] //For animations
+  let tmpArr = [...array]
+  divide(array, 0, array.length - 1, tmpArr, ani)
+  animate(ani, appContext)
+  return array
 }
 
-const mergeSortReal = (array, ani) => {
-  if (array.length === 1) return array
-
-  let array1 = array.slice(0, Math.floor(array.length / 2))
-  let array2 = array.slice(array1.length)
-
-  array1 = mergeSortReal(array1, ani)
-  array2 = mergeSortReal(array2, ani)
-
-  return merge(array1, array2, ani)
+const divide = (array, startX, endX, tmpArr, ani) => {
+  if (startX === endX) return
+  const middleX = Math.floor((startX + endX) / 2)
+  divide(tmpArr, startX, middleX, array, ani)
+  divide(tmpArr, middleX + 1, endX, array, ani)
+  conquer(array, startX, middleX, endX, tmpArr, ani)
 }
 
-const merge = (array1, array2, ani) => {
-  let tmpArr = []
-  while (array1.length > 0 && array2.length > 0) {
-    ani.push({
-      index1: array1[0].index,
-      index2: array2[0].index,
-      swap: false,
-      push: false,
-    })
-    if (array1[0].value > array2[0].value) {
-      tmpArr.push(array2[0])
+const conquer = (array, startX, middleX, endX, tmpArr, ani) => {
+  let k = startX
+  let i = startX
+  let j = middleX + 1
+  while (i <= middleX && j <= endX) {
+    if (tmpArr[i] <= tmpArr[j]) {
+      //animate the value change...
       ani.push({
-        index1: array1[0].index,
-        index2: array2[0].index,
-        swap: true,
-        push: false,
+        index: k,
+        newVal: tmpArr[i],
       })
-      array2.shift()
+      array[k++] = tmpArr[i++]
     } else {
-      tmpArr.push(array1[0])
+      //animate the value change...
       ani.push({
-        index1: array1[0].index,
-        index2: array2[0].index,
-        swap: true,
-        push: false,
+        index: k,
+        newVal: tmpArr[j],
       })
-      array1.shift()
+      array[k++] = tmpArr[j++]
     }
   }
-
-  while (array1.length > 0) {
-    tmpArr.push(array1[0])
+  while (i <= middleX) {
+    //animate the value change...
     ani.push({
-      index1: array1[0].index,
-      index2: null,
-      swap: false,
-      push: true,
+      index: k,
+      newVal: tmpArr[i],
     })
-    array1.shift()
+    array[k++] = tmpArr[i++]
   }
-
-  while (array2.length > 0) {
-    tmpArr.push(array2[0])
+  while (j <= endX) {
+    //animate the value change...
     ani.push({
-      index1: array2[0].index,
-      index2: null,
-      swap: false,
-      push: true,
+      index: k,
+      newVal: tmpArr[j],
     })
-    array2.shift()
+    array[k++] = tmpArr[j++]
   }
-  return tmpArr
 }
 
-//console.log(mergeSort([7, 4, 1, 2, 5, 8, 9, 6, 3]))
+const animate = (ani, { values, setValues, settings }) => {
+  let lastItems = [0, 1]
+  let tmpArr = [...values]
+  for (let i = 0; i < ani.length; i++) {
+    let item = ani[i]
+    setTimeout(() => {
+      //Clear out old comparison colors
+      document.getElementById(`${lastItems[0]}`).style.backgroundColor =
+        "#90ee90"
+      document.getElementById(`${lastItems[1]}`).style.backgroundColor =
+        "#90ee90"
 
-const mergeSortAnimation = (ani, appContext) => {
-    console.log(ani)
+      //Style bars that are being updated in the array
+      lastItems = [item.index, item.index]
+      document.getElementById(`${item.index}`).style.backgroundColor = "#ffc600"
+      //Execute changes on temp array then update app state
+      tmpArr[item.index] = item.newVal
+      setValues([...tmpArr])
+
+      //If on last item of loop, change the last two comparison item's colors back to normal
+      if (i === ani.length - 1) {
+        document.getElementById(`${lastItems[0]}`).style.backgroundColor =
+          "#90ee90"
+        document.getElementById(`${lastItems[1]}`).style.backgroundColor =
+          "#90ee90"
+      }
+    }, i * settings.AnimationSpeed)
+  }
 }
 
 export default mergeSort
