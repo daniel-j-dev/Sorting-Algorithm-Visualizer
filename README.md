@@ -1,6 +1,6 @@
 # Sorting Algorithm Visualizer <img src="public/favicon.svg?raw=true" alt="Bar chart" width="50" height="whatever">
 
-> The best way to visualize sorting algorithms .
+> The best way to visualize sorting algorithms.
 
 ## <a href="https://sorting-algorithm-visual.herokuapp.com/">Visit the site!</a>
 
@@ -30,7 +30,7 @@ Enter the following commands in git bash:
 
 ### Assets
 
-Browser tab icon by romzicon from the Noun Project.</br>
+Favicon by romzicon from the Noun Project.</br>
 https://thenounproject.com/term/bar-chart/182087/
 
 Fira Code (Site font)</br>
