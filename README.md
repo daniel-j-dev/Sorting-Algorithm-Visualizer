@@ -2,8 +2,6 @@
 
 > The best way to visualize sorting algorithms.
 
-## <a href="https://sorting-algorithm-visual.herokuapp.com/">Visit the site!</a>
-
 <p  >
 <a href="https://sorting-algorithm-visual.herokuapp.com/">
 <img src="public/readme-gif-compressed.gif?raw=true" alt="Bar chart" height="" width=""></a>
